@@ -1,1 +1,2 @@
-docker build -t terraform:local . 
+DOCKER=$(basename "$PWD")
+docker build -t $DOCKER:local . 

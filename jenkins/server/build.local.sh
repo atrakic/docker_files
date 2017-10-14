@@ -1,1 +1,2 @@
-docker build -t jenkins:local .
+DOCKER=$(basename "$PWD")
+docker build -t $DOCKER:local . 
