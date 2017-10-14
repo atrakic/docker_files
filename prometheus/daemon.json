@@ -1,0 +1,5 @@
+{
+  "debug": true,
+  "experimental": true,
+  "metrics-addr": "0.0.0.0:9999"
+}
