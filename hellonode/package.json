@@ -1,0 +1,20 @@
+{
+  "name": "hellonode",
+  "version": "0.1.0",
+  "description": "A Hello World HTTP server",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/atrakic/docker_files/hellonode/"
+  },
+  "keywords": [
+    "node",
+    "docker"
+  ],
+  "author": "awscli0@gmail.com",
+  "license": "MIT"
+}
