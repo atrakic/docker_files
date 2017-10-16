@@ -1,1 +1,11 @@
-maven-plugin:2.7.1
+git:latest
+git-client:latest
+github:latest
+docker-commons:latest
+docker-workflow:latest
+ssh-agent:latest
+ssh-slaves:latest
+workflow-aggregator:latest
+docker-build-publish:latest
+swarm:latest
+amazon-ecr:latest
