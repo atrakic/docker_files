@@ -1,2 +1,2 @@
 DOCKER=$(basename "$PWD")
-docker build -t $DOCKER:local . 
+docker build --rm --force-rm -t $DOCKER:local . 
