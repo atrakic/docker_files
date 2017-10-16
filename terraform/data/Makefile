@@ -1,4 +1,7 @@
-all: fmt validate plan
+all: fmt validate init plan
+
+init: 
+	terraform init 
 
 fmt:
 	terraform fmt . 
