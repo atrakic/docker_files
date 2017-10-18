@@ -3,3 +3,7 @@ TAG=$(git rev-parse --abbrev-ref HEAD)
 
 REGISTRY_USER=$TAG
 REGISTRY_PASS=$TAG-12345
+REGISTRY_HOST=localhost
+REGISTRY_PORT=5000
+
+

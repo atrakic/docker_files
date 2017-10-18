@@ -3,9 +3,10 @@ git-client:latest
 github:latest
 docker-commons:latest
 docker-workflow:latest
-ssh-agent:latest
-ssh-slaves:latest
+#ssh-agent:latest
+#ssh-slaves:latest
 workflow-aggregator:latest
 docker-build-publish:latest
 swarm:latest
 amazon-ecr:latest
+envinject:latest
