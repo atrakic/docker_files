@@ -1,2 +1,3 @@
 DOCKER=$(basename "$PWD")
-docker build --rm --force-rm -t $DOCKER:local . 
+TAG=$(basename $0 | awk -F'.' '{ print  $2 }')
+docker build --rm --force-rm -t $DOCKER:$TAG . 
