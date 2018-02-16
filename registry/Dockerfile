@@ -1,4 +1,3 @@
-#FROM registry:2
 FROM registry:2.5.1
 ADD certs/ca.crt certs/ca.key certs/docker-registry.htpasswd /var/registry/certs/
 ENV REGISTRY_HTTP_TLS_CERTIFICATE /var/registry/certs/ca.crt
