@@ -28,10 +28,12 @@
 
 set -e
 
-rm -rfv $1
-mkdir -p $1
+certs=certs
 
-pushd $1
+rm -rfv $certs
+mkdir -p $certs
+
+pushd $certs
 
 docker run --entrypoint htpasswd registry:2.5.1 -Bbn $REGISTRY_USER $REGISTRY_PASS > docker-registry.htpasswd 
 
