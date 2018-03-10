@@ -1,2 +1,2 @@
 . ../env.sh 
-docker build --rm --force-rm -t $DOCKER:$TAG . 
+docker build --rm=true --force-rm -t $DOCKER:$TAG . 
