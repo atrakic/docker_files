@@ -7,6 +7,4 @@ docker-workflow:latest
 #ssh-slaves:latest
 workflow-aggregator:latest
 docker-build-publish:latest
-swarm:latest
-amazon-ecr:latest
 envinject:latest
