@@ -7,19 +7,13 @@ node {
     }
 
     stage('Build image') {
-        app = docker.build("${env.DOCKER_NAME}")
-    }
-
-    stage('Test image') {
-        app.inside {
-            sh 'echo "Tests passed"'
-        }
+        app = docker.build("${env.DOCKER_NAME}:${env.BUILD_ID}")
     }
 
     stage('Push image') {
-        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-            app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
+        docker.withRegistry('https://${env.REGISTRY_HOST}:${env.REGISTRY_PORT}',
+        '${env.REGISTRY_USERNAME}' ) {
+            app.push()
         }
     }
 }

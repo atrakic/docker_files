@@ -1,5 +1,4 @@
 #!/usr/bin/python
-
 import re
 import time
 import requests
@@ -13,11 +12,14 @@ from prometheus_client.core import GaugeMetricFamily, REGISTRY
 
 DEBUG = int(os.environ.get('DEBUG', '0'))
 
-
 class JenkinsCollector(object):
     # The build statuses we want to export about.
-    statuses = ["lastBuild", "lastCompletedBuild", "lastFailedBuild",
-                "lastStableBuild", "lastSuccessfulBuild", "lastUnstableBuild",
+    statuses = ["lastBuild", 
+                "lastCompletedBuild", 
+                "lastFailedBuild",
+                "lastStableBuild", 
+                "lastSuccessfulBuild", 
+                "lastUnstableBuild",
                 "lastUnsuccessfulBuild"]
 
     def __init__(self, target, user, password):
@@ -28,7 +30,6 @@ class JenkinsCollector(object):
     def collect(self):
         # Request data from Jenkins
         jobs = self._request_data()
-
         self._setup_empty_prometheus_metrics()
 
         for job in jobs:
@@ -69,7 +70,6 @@ class JenkinsCollector(object):
                 else:
                     jobs.append(job)
             return jobs
-
         return parsejobs(url)
 
     def _setup_empty_prometheus_metrics(self):
@@ -138,7 +138,6 @@ class JenkinsCollector(object):
                 passcount = metric.get('totalCount') - metric.get('failCount') - metric.get('skipCount')
                 self._prometheus_metrics[status]['passCount'].add_metric([name], passcount)
 
-
 def parse_args():
     parser = argparse.ArgumentParser(
         description='jenkins exporter args jenkins address and port'
@@ -174,7 +173,6 @@ def parse_args():
     )
     return parser.parse_args()
 
-
 def main():
     try:
         args = parse_args()
@@ -187,7 +185,6 @@ def main():
     except KeyboardInterrupt:
         print(" Interrupted")
         exit(0)
-
 
 if __name__ == "__main__":
     main()

@@ -9,15 +9,15 @@ RUN echo "deb http://apt.dockerproject.org/repo debian-jessie main" \
       > /etc/apt/sources.list.d/docker.list \
      && apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 \
      --recv-keys 58118E89F3A912897C070ADBF76221572C52609D \
-     && apt-get update \ 
-     && apt-get install -y --no-install-recommends sudo apt-transport-https docker-engine make \
+     && apt-get update -qq \
+     && DEBIAN_FRONTEND=noninteractive apt-get install -qy --no-install-recommends sudo apt-transport-https docker-engine make \
      && rm -rf /var/lib/apt/lists/*
 
-RUN curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose; \
+RUN curl -sL https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose; \
     chmod +x /usr/local/bin/docker-compose
 
 RUN sudo usermod -a -G docker jenkins
-RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers 
+RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
 
 USER jenkins
 COPY security.groovy /usr/share/jenkins/ref/init.groovy.d/security.groovy

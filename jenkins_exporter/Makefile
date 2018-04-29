@@ -1,6 +1,6 @@
 IMAGENAME?=$(shell basename "$$PWD")
 TAG?=$(shell git rev-parse --abbrev-ref HEAD)
-JENKINS_SERVER?=http://localhost
+JENKINS_SERVER?=http://localhost:8080
 JENKINS_USER?=admin
 JENKINS_PASSWORD?=admin
 
