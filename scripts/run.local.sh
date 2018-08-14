@@ -10,7 +10,7 @@ state=$(docker inspect --format "{{.State.Running}}" "$container" 2>/dev/null)
 
 if [[ "$state" == "false" ]] || [[ "$state" == "" ]]; then
     echo "Starting container: $container"
-    "$container"
+    docker run "$container"
 else
     echo "Already running: $container"
 fi
