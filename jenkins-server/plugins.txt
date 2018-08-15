@@ -2,6 +2,7 @@ ansicolor
 git
 git-client
 github
+docker-plugin
 docker-commons
 docker-workflow
 workflow-aggregator
@@ -9,6 +10,6 @@ docker-build-publish
 job-dsl
 swarm
 build-pipeline-plugin
-htmlpublisher
 delivery-pipeline-plugin
 join
+kubernetes
