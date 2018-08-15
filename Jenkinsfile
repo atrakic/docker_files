@@ -7,7 +7,9 @@ node {
     }
 
     stage('Build image') {
+      dir(env.GIT_PATH) {
         app = docker.build("${env.DOCKER_NAME}:${env.BUILD_ID}")
+      }
     }
 
     stage('Push image') {
