@@ -1,6 +1,6 @@
 #!/bin/bash
 
-. ../env.sh 
+. ../scripts/env.sh
 
 ##
 # The MIT License
@@ -38,6 +38,6 @@ pushd $certs
 docker run --entrypoint htpasswd registry:2.5.1 -Bbn $REGISTRY_USER $REGISTRY_PASS > docker-registry.htpasswd 
 
 # Create the CA Key and Certificate for signing Certs
-openssl genrsa -des3 -passout pass:x -out ca.key 4096
-openssl rsa -passin pass:x -in ca.key -out ca.key # remove password!
+openssl genrsa -des3 -passout pass:$REGISTRY_PASS -out ca.key 4096
+openssl rsa -passin pass:$REGISTRY_PASS -in ca.key -out ca.key 
 openssl req -new -x509 -days 365 -key ca.key -out ca.crt -subj "/C=US/ST=California/L=San Jose/O=Jenkins CI/OU=Pipeline Dept/CN=localhost"
