@@ -1,4 +1,5 @@
 SHELL := /bin/bash
+USER  := xomodo
 TOP   := $(shell git rev-parse --show-toplevel)
 TAG   := $(shell git rev-parse --abbrev-ref HEAD)
 
@@ -18,6 +19,13 @@ push-all:
 	@for d in $$(ls -d */ | grep -v scripts | cut -f1 -d'/');do \
 	pushd $$d; \
 	$(TOP)/scripts/push.env.sh $$d; \
+	popd; \
+	done
+
+push-local-all:
+	@for d in $$(ls -d */ | grep -v scripts | cut -f1 -d'/');do \
+	pushd $$d; \
+	DOCKER_REGISTRY_LOCAL_LOGIN=true $(TOP)/scripts/push.env.sh $$d; \
 	popd; \
 	done
 

@@ -8,4 +8,4 @@ TOP="$(git rev-parse --show-toplevel)"
 docker build \
   --rm=true \
   --force-rm \
-  -t "$DOCKER":"$TAG" .
+  -t "$DOCKER":"$VERSION" .
