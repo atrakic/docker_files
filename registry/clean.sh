@@ -2,10 +2,7 @@
 
 set -e
 
-SCRIPT="$(readlink -f $0)"
-SCRIPTPATH="$(dirname $SCRIPT)"
-DOCKER="$(basename $SCRIPTPATH)"
-TAG="$(git rev-parse --abbrev-ref HEAD)"
+TOP="$(git rev-parse --show-toplevel)"
+. "$TOP/scripts/env.sh"
 
-docker container stop "$DOCKER" && docker container rm -v "$DOCKER"
-
+docker container stop "$DOCKER" && docker container rm -fv "$DOCKER"

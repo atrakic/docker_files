@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
 
-SCRIPT="$(readlink -f $0)"
-SCRIPTPATH="$(dirname $SCRIPT)"
-DOCKER="$(basename $SCRIPTPATH)"
-TAG="$(git rev-parse --abbrev-ref HEAD)"
+#set -e
 
-# ./gen-security-data.sh"
-  
-docker run --name "$DOCKER" \
-     -p 5000:5000 \
-     -d \
-     --restart=always \
-     "$DOCKER:$TAG"
+TOP="$(git rev-parse --show-toplevel)"
+. "$TOP/scripts/env.sh"
+
+docker run -d \
+  --name "$DOCKER" \
+  -p "$REGISTRY_PORT":"$REGISTRY_PORT" \
+  --restart=always \
+  -e REGISTRY_HTTP_ADDR="$REGISTRY_HOST":"$REGISTRY_PORT" \
+  -e LOGLEVEL=INFO -e DEBUG=true \
+  "$DOCKER:$TAG"
+#   -v /mnt/registry:/var/lib/registry \
+
