@@ -3,7 +3,7 @@ FROM jenkins/jenkins:lts
 ENV JENKINS_USER admin
 ENV JENKINS_PASS admin
 ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
-ENV CASC_JENKINS_CONFIG="/var/jenkins_home/casc_configs/jenkins.yaml"
+ENV CASC_JENKINS_CONFIG="/var/jenkins_home/jenkins.yaml"
 
 USER root
 RUN echo "deb http://apt.dockerproject.org/repo debian-jessie main" \

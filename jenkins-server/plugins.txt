@@ -4,6 +4,7 @@ git-client
 github
 docker-plugin
 docker-commons
+docker-slaves
 docker-workflow
 workflow-aggregator
 docker-build-publish
@@ -14,3 +15,5 @@ delivery-pipeline-plugin
 join
 kubernetes
 configuration-as-code
+configuration-as-code-support
+pipeline-utility-steps

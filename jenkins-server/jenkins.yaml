@@ -1,0 +1,78 @@
+# addapted from: https://raw.githubusercontent.com/Praqma/praqma-jenkins-casc/master/jenkins.yaml 
+#
+#configuration-as-code:
+#  deprecation: warn
+
+jenkins:
+  systemMessage: "My demo setup for Jenkins Configuration as Code plugin. "
+  agentProtocols: 
+    - "JNLP4-connect" 
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+       - id: demoAdmin
+         password: ${adminpw:-passw0rd}
+  authorizationStrategy:
+    globalMatrix:
+      grantedPermissions:
+        - "Overall/Read:anonymous"
+        - "Job/Read:anonymous"
+        - "View/Read:anonymous"
+        - "Overall/Administer:authenticated"
+  crumbIssuer: "standard"
+
+# FIXME: 
+#credentials:
+#  system:
+#    domainCredentials:
+#      - credentials:
+#          - usernamePassword: 
+#              scope:    SYSTEM
+#              id:       github-user
+#              username: ReleasePraqma
+#              password: ${github}
+#          - basicSSHUserPrivateKey: 
+#              scope: SYSTEM
+#              id: agent-private-key
+#              username: agentuser
+#              passphrase:  ""
+#              description: "ssh private key used to connect ssh slaves"
+#              privateKeySource:
+#                directEntry: # The key 'agent_private_key' resolved from a docker secret defined in docker-compose.yml          
+#                  privateKey: ${agent_private_key}
+                  
+# FIXME: 
+#jobs:
+
+tool:
+  git:
+    installations:
+      - name: Default
+        home: "git"
+
+security:
+  remotingCLI:
+    enabled: false
+
+  globalLibraries:
+    libraries:
+      - name: "praqma-shared@master"
+        implicit: true
+        defaultVersion: "master"
+        retriever:
+          modernSCM:
+            scm:
+              git:
+                remote: "https://github.com/atrakic/jenkins-shared-libraries.git"
+#plugins:
+#  required:
+#    credentials: 2.1.17
+#    git: 3.9.0
+#    ssh-slaves: 1.26
+#    warnings: 4.66
+#    matrix-auth: 2.2
+#    job-dsl: 1.68
+#    workflow-aggregator: 2.5
+#    timestamper: 1.8.9
+
