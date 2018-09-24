@@ -3,6 +3,7 @@ FROM jenkins/jenkins:lts
 ENV JENKINS_USER admin
 ENV JENKINS_PASS admin
 ENV JAVA_OPTS="-Djenkins.install.runSetupWizard=false"
+ENV CASC_JENKINS_CONFIG="/var/jenkins_home/casc_configs/jenkins.yaml"
 
 USER root
 RUN echo "deb http://apt.dockerproject.org/repo debian-jessie main" \
@@ -12,9 +13,6 @@ RUN echo "deb http://apt.dockerproject.org/repo debian-jessie main" \
      && apt-get update -qq \
      && DEBIAN_FRONTEND=noninteractive apt-get install -qy --no-install-recommends sudo apt-transport-https docker-engine make \
      && rm -rf /var/lib/apt/lists/*
-
-RUN curl -sL https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose; \
-    chmod +x /usr/local/bin/docker-compose
 
 RUN sudo usermod -a -G docker jenkins
 RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
