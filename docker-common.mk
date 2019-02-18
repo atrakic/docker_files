@@ -21,7 +21,7 @@ image: ## Build the production image
         ./
 
 .PHONY: clean
-clean: ## Clean image 
+rmi: ## Clean image
 	docker rmi -f $(IMAGE_NAME):$(TAG)
 
 .PHONY: tag-latest
