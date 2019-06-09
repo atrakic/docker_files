@@ -1,19 +1,13 @@
-SHELL := /bin/bash
-
-DOCKER := alpine
-
-ARCH := x86_64
+SHELL   := /bin/bash
+DOCKER  := alpine
+ARCH    := x86_64
 VERSION := 3.9.4
 
-TAG   := $(shell git rev-parse --abbrev-ref HEAD)
-TOP := $(shell git rev-parse --show-toplevel)
-
-.PHONY: all
-all: 
-	make build-local-all
+TAG     := $(shell git rev-parse --abbrev-ref HEAD)
+TOP     := $(shell git rev-parse --show-toplevel)
 
 pre:
-	cd $(DOCKER) && wget -c http://dl-cdn.alpinelinux.org/$(DOCKER)/v3.9/releases/$(ARCH)/alpine-minirootfs-$(VERSION)-$(ARCH).tar.gz && \
+	@cd $(DOCKER) && wget -c http://dl-cdn.alpinelinux.org/$(DOCKER)/v3.9/releases/$(ARCH)/alpine-minirootfs-$(VERSION)-$(ARCH).tar.gz && \
 		export ALPINE_ARCH=$(ARCH); export ALPINE_VERSION=$(VERSION); envsubst < Dockerfile.base | docker build --rm=true --force-rm -t "$(DOCKER)":"$(TAG)" -f - .
 
 build-local-all: pre
