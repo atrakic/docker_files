@@ -1,4 +1,4 @@
-FROM alpine:3.6
+FROM alpine:${TAG}
 
 RUN apk --no-cache --update add bash curl less groff jq python py-pip && \
   pip install --no-cache-dir --upgrade pip && \

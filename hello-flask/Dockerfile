@@ -1,4 +1,4 @@
-FROM alpine:3.5
+FROM alpine:${TAG}
 
 RUN apk add --update py2-pip
 RUN pip install --upgrade pip
