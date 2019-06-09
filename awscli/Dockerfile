@@ -1,13 +1,14 @@
 FROM alpine:${TAG}
 
-RUN apk --no-cache --update add bash curl less groff jq python py-pip && \
-  pip install --no-cache-dir --upgrade pip && \
-  pip install --no-cache-dir \
-    awscli==1.11.167 \
-    s3cmd==2.0.0 \
-    https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-1.4-24.tar.gz && \
-  mkdir /root/.aws && \
-  aws --version && \
-  s3cmd --version
+ENV AWSCLI_VERSION "1.16.174"
 
-ENTRYPOINT []
+RUN apk add --update \
+    python \
+    python-dev \
+    py-pip \
+    build-base \
+    && pip install awscli==${AWSCLI_VERSION} --upgrade --user \
+    && apk --purge -v del py-pip \
+    && rm -rf /var/cache/apk/*
+
+ENTRYPOINT ["/root/.local/bin/aws"]
